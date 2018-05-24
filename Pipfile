@@ -10,6 +10,9 @@ click = "*"
 pytest = "*"
 pipenv = "*"
 pylint = "*"
+yapf = "*"
+rope = "*"
+twine = "*"
 
 [requires]
 python_version = "3.6"
