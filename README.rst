@@ -14,12 +14,16 @@ tencent             https://mirrors.cloud.tencent.com/pypi/simple
 
 aliyun              https://mirrors.aliyun.com/pypi/simple/
 $ prm show
+
 Current: https://mirrors.cloud.tencent.com/pypi/simple
 $ prm use pypi
+
 Setting to pypi
 $> prm show
+
 Current: https://pypi.org/simple
 $ prm --help
+
 Usage: prm [OPTIONS] COMMAND [ARGS]...
 
 Options:
@@ -29,6 +33,7 @@ Commands:
   list
   show
   use
+::
 
 Install
 -------
