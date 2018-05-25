@@ -4,7 +4,9 @@ pip repository manager
 
 Use
 ---
+
 .. code-block:: shell
+
     $ prm list
     pypi                https://pypi.org/simple
 
@@ -33,12 +35,16 @@ Use
       list
       show
       use
-::
+
+
 
 Install
 -------
+
 .. code-block:: shell
-pip install prm
+    
+    pip install prm
+
 
 Author
 ------
