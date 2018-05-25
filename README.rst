@@ -21,7 +21,7 @@ Use
     $ prm use pypi
 
     Setting to pypi
-    $> prm show
+    $ prm show
 
     Current: https://pypi.org/simple
     $ prm --help
