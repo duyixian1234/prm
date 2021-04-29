@@ -1,5 +1,6 @@
 import configparser
 import pathlib
+import platform
 
 import click
 
@@ -22,7 +23,13 @@ repositories = [
     },
 ]
 
-pip = pathlib.Path.home() / pathlib.Path(".pip")
+os = platform.system()
+home = pathlib.Path.home()
+pip_dir = home / ".pip"
+config_file = "pip.conf"
+if os == "Windows":
+    pip_dir = home / "pip"
+    config_file = "pip.ini"
 
 
 @click.group()
@@ -41,9 +48,9 @@ def use(repository: str):
                 "index-url": one["url"],
                 "trusted-host": one["trusted-host"],
             }
-            if not pip.exists():
-                pip.mkdir()
-            with open(pip.as_posix() + "pip.conf", "w") as file:
+            if not pip_dir.exists():
+                pip_dir.mkdir()
+            with open(pip_dir / config_file, "w") as file:
                 config.write(file)
             return
     else:
@@ -58,9 +65,9 @@ def list():
 
 @click.command()
 def show():
-    if pip.exists():
+    if (pip_dir / config_file).exists():
         config = configparser.ConfigParser()
-        config.read(pip.as_posix() + "pip.conf")
+        config.read(pip_dir / config_file)
         click.echo(f'Current: {config["global"]["index-url"]}')
     else:
         click.echo("{:20}{}".format(repositories[0]["name"], repositories[0]["url"]))
