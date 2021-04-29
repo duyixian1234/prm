@@ -35,7 +35,7 @@ def cli():
 def use(repository: str):
     for one in repositories:
         if one["name"] == repository:
-            print(f"Setting to {repository}")
+            click.echo(f"Setting to {repository}")
             config = configparser.ConfigParser()
             config["global"] = {
                 "index-url": one["url"],
@@ -47,13 +47,13 @@ def use(repository: str):
                 config.write(file)
             return
     else:
-        print(f"No repository {repository}")
+        click.echo(f"No repository {repository}")
 
 
 @click.command()
 def list():
     for repository in repositories:
-        print(f'{repository["name"]:20}{repository["url"]}\n')
+        click.echo(f'{repository["name"]:20}{repository["url"]}\n')
 
 
 @click.command()
@@ -61,9 +61,9 @@ def show():
     if pip.exists():
         config = configparser.ConfigParser()
         config.read(pip.as_posix() + "pip.conf")
-        print(f'Current: {config["global"]["index-url"]}')
+        click.echo(f'Current: {config["global"]["index-url"]}')
     else:
-        print("{:20}{}".format(repositories[0]["name"], repositories[0]["url"]))
+        click.echo("{:20}{}".format(repositories[0]["name"], repositories[0]["url"]))
 
 
 def main():
